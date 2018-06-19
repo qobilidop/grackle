@@ -36,7 +36,7 @@
      &                priDataSize, priCooling, priHeating, priMMW,
      &                metGridRank, metGridDim,
      &                metPar1, metPar2, metPar3,
-     &                metDataSize, metCooling, metHeating)
+     &                metDataSize, metCooling, metHeating, udot)
 
 !
 !  SOLVE MULTI-SPECIES RATE EQUATIONS AND RADIATIVE COOLING
@@ -109,6 +109,7 @@
 !    metDataSize - total size of flattened 1D metal cooling data array
 !    metCooling  - metal cooling data
 !    metHeating  - metal heating data
+!    udot     - extra heating
 !
 !  OUTPUTS:
 !    update chemical rate densities (HI, HII, etc)
@@ -141,7 +142,7 @@
      &        DI(in,jn,kn),  DII(in,jn,kn), HDI(in,jn,kn),
      &        d(in,jn,kn),     e(in,jn,kn),
      &        u(in,jn,kn),    v(in,jn,kn),     w(in,jn,kn),
-     &        metal(in,jn,kn)
+     &        metal(in,jn,kn), udot(in,jn,kn)
 
 !  Cooling tables (coolings rates as a function of temperature)
 
@@ -344,7 +345,7 @@ c      chunit = (7.17775e-12_DKIND)/(2._DKIND*uvel*uvel*mh)   ! 4.5 eV per H2 fo
      &                priDataSize, priCooling, priHeating, priMMW,
      &                metGridRank, metGridDim,
      &                metPar1, metPar2, metPar3,
-     &                metDataSize, metCooling, metHeating,
+     &                metDataSize, metCooling, metHeating, udot,
      &                itmask)
 
             if (ispecies .gt. 0) then

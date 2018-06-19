@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     *HeI_density, *HeII_density, *HeIII_density,
     *H2I_density, *H2II_density,
     *DI_density, *DII_density, *HDI_density,
-    *e_density, *metal_density;
+    *e_density, *metal_density, *udot;
   gr_float tiny_number = 1.e-20;
 
   // Set grid dimension and size.
@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
   x_velocity    = new gr_float[field_size];
   y_velocity    = new gr_float[field_size];
   z_velocity    = new gr_float[field_size];
+  udot          = new gr_float[field_size];
   // for primordial_chemistry >= 1
   HI_density    = new gr_float[field_size];
   HII_density   = new gr_float[field_size];
@@ -140,6 +141,7 @@ int main(int argc, char *argv[])
     x_velocity[i] = 0.0;
     y_velocity[i] = 0.0;
     z_velocity[i] = 0.0;
+    udot[i] = 0.0;
 
     // initilize internal energy (here 1000 K for no reason)
     energy[i] = 1000. / temperature_units;
@@ -164,7 +166,7 @@ int main(int argc, char *argv[])
                       HeI_density, HeII_density, HeIII_density,
                       H2I_density, H2II_density,
                       DI_density, DII_density, HDI_density,
-                      e_density, metal_density) == 0) {
+                      e_density, metal_density, udot) == 0) {
     fprintf(stderr, "Error in solve_chemistry.\n");
     return 0;
   }

@@ -64,7 +64,7 @@
      &        HeI(in,jn,kn), HeII(in,jn,kn), HeIII(in,jn,kn),
      &        HM(in,jn,kn),  H2I(in,jn,kn),  H2II(in,jn,kn),
      &        DI(in,jn,kn),  DII(in,jn,kn),  HDI(in,jn,kn),
-     &        metal(in,jn,kn),
+     &        metal(in,jn,kn), udot(in,jn,kn),
      &        cooltime(in,jn,kn)
       real*8  hyd01ka(nratec), h2k01a(nratec), vibha(nratec), 
      &        rotha(nratec), rotla(nratec), gpldla(nratec),
@@ -135,6 +135,7 @@
          do j = js+1, je+1
             do i = is+1, ie+1
                d(i,j,k)     = d(i,j,k)/real(aye**3, RKIND)
+               udot(i,j,k)  = 0.0
             enddo
             if (ispecies .gt. 0) then
                do i = is+1, ie+1
@@ -212,7 +213,7 @@
      &                priDataSize, priCooling, priHeating, priMMW,
      &                metGridRank, metGridDim,
      &                metPar1, metPar2, metPar3,
-     &                metDataSize, metCooling, metHeating,
+     &                metDataSize, metCooling, metHeating, udot,
      &                itmask)
 
 !        Compute the cooling time on the slice

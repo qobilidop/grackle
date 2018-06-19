@@ -35,7 +35,7 @@
      &                priDataSize, priCooling, priHeating, priMMW,
      &                metGridRank, metGridDim,
      &                metPar1, metPar2, metPar3,
-     &                metDataSize, metCooling, metHeating,
+     &                metDataSize, metCooling, metHeating, udot,
      &                itmask)
 
 !  SOLVE RADIATIVE COOLING/HEATING EQUATIONS
@@ -75,7 +75,7 @@
      &        HeI(in,jn,kn), HeII(in,jn,kn), HeIII(in,jn,kn),
      &        HM(in,jn,kn),  H2I(in,jn,kn), H2II(in,jn,kn),
      &        DI(in,jn,kn),  DII(in,jn,kn), HDI(in,jn,kn),
-     &        metal(in,jn,kn)
+     &        metal(in,jn,kn), udot(in,jn,kn)
       real*8  hyd01ka(nratec), h2k01a(nratec), vibha(nratec), 
      &        rotha(nratec), rotla(nratec), gpldla(nratec),
      &        gphdla(nratec), hdltea(nratec), hdlowa(nratec),
@@ -748,6 +748,14 @@ c  new (correct) way: (april 4, 2007)
      &        itmask)
 
       endif
+
+!     Add extra heating
+      do i=is+1, ie+1
+         if ( itmask(i) ) then
+	   edot(i) = edot(i) + udot(i,j,k)
+         end if
+      enddo
+
 
 !     Set tgasold
 
