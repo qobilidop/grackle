@@ -237,7 +237,7 @@ int solve_chemistry_table(code_units *my_units,
                           int *grid_start, int *grid_end,
                           gr_float *density, gr_float *internal_energy,
                           gr_float *x_velocity, gr_float *y_velocity, gr_float *z_velocity,
-                          gr_float *metal_density);
+                          gr_float *metal_density, gr_float *udot);
 
 int _solve_chemistry_table(chemistry_data *my_chemistry,
                            code_units *my_units,
@@ -246,7 +246,7 @@ int _solve_chemistry_table(chemistry_data *my_chemistry,
                            int *grid_start, int *grid_end,
                            gr_float *density, gr_float *internal_energy,
                            gr_float *x_velocity, gr_float *y_velocity, gr_float *z_velocity,
-                           gr_float *metal_density);
+                           gr_float *metal_density, gr_float *udot);
 
 int solve_chemistry_table_(int *comoving_coordinates,
                            double *density_units, double *length_units,
@@ -256,7 +256,7 @@ int solve_chemistry_table_(int *comoving_coordinates,
                            int *grid_start, int *grid_end,
                            gr_float *density, gr_float *internal_energy,
                            gr_float *x_velocity, gr_float *y_velocity, gr_float *z_velocity,
-                           gr_float *metal_density);
+                           gr_float *metal_density, gr_float *udot);
 
 int calculate_cooling_time_table(code_units *my_units, double a_value,
                                  int grid_rank, int *grid_dimension,
